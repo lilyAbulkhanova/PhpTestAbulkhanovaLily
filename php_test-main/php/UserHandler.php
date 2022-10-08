@@ -28,13 +28,12 @@ class UserHandler
 
     public function getUserArticles($userId)
     {
-        $result = mysqli_query(mysqli_connect("mysql", 'root', getenv('MYSQL_ROOT_PASSWORD'), 'db_name'), "SELECT article.label FROM article
+        $result = mysqli_query(mysqli_connect("mysql", 'root', getenv('MYSQL_ROOT_PASSWORD'), 'db_name'), "SELECT article.id,label,text FROM article
         INNER JOIN user ON (article.userId = user.id) WHERE user.id = {$userId}");
         $emparray = array();
         while ($row = mysqli_fetch_assoc($result)) {
             $emparray[] = $row;
         }
-        return "labels: " . json_encode($emparray);
+        return "articles: " . json_encode($emparray);
     }
-
 }
