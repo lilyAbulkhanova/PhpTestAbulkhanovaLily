@@ -1,0 +1,4 @@
+.env
+.data/
+php/vendor/
+.idea/*

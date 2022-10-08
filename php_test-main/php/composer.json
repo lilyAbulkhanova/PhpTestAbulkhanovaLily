@@ -1,0 +1,8 @@
+{
+  "require": {
+    "ext-mysqli": "*",
+    "fakerphp/faker": "^1.20",
+    "ext-pdo": "*",
+    "ext-json": "*"
+  }
+}

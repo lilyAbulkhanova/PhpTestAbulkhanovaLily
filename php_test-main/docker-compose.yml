@@ -1,0 +1,29 @@
+version: "3"
+services:
+  mysql:
+    container_name: container_mysql
+    image: mysql
+    volumes:
+        - "./.data/mysql:/var/lib/mysql"
+    environment:
+        MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+    ports:
+        - "3307:3307"
+  admin:
+    image: adminer
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - 8080:8080
+  php:
+    container_name: php
+    tty: true
+    depends_on:
+      - mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      DATABASE_NAME: "${DATABASE_NAME}"
+    build: php/
+    volumes:
+      - ./php:/php
